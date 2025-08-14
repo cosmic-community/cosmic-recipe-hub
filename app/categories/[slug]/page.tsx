@@ -14,10 +14,11 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   
   try {
     const category = await getCategoryBySlug(slug)
+    const categoryName = category.metadata?.name || category.title
     
     return {
-      title: `${category.metadata.name} Recipes - Cosmic Recipe Hub`,
-      description: category.metadata.description || `Discover delicious ${category.metadata.name.toLowerCase()} recipes`,
+      title: `${categoryName} Recipes - Cosmic Recipe Hub`,
+      description: category.metadata?.description || `Discover delicious ${categoryName.toLowerCase()} recipes`,
     }
   } catch {
     return {
@@ -41,15 +42,17 @@ export default async function CategoryPage({ params }: CategoryPageProps): Promi
     notFound()
   }
 
+  const categoryName = category.metadata?.name || category.title
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50">
       <div className="container mx-auto px-4 py-16">
         {/* Category Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
-            {category.metadata.name}
+            {categoryName}
           </h1>
-          {category.metadata.description && (
+          {category.metadata?.description && (
             <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
               {category.metadata.description}
             </p>

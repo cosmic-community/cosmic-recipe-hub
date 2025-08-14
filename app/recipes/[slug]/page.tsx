@@ -3,6 +3,7 @@ import { getRecipe, getRecipes } from '@/lib/cosmic'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { DifficultyLevel } from '@/types'
 
 interface RecipePageProps {
   params: Promise<{ slug: string }>
@@ -17,29 +18,37 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: RecipePageProps): Promise<Metadata> {
   const { slug } = await params
-  const recipe = await getRecipe(slug)
-
-  if (!recipe) {
+  
+  try {
+    const recipe = await getRecipe(slug)
+    
+    return {
+      title: `${recipe.title} - Cosmic Recipe Hub`,
+      description: recipe.metadata?.description || `Learn how to make ${recipe.title}`,
+    }
+  } catch {
     return {
       title: 'Recipe Not Found',
     }
-  }
-
-  return {
-    title: `${recipe.title} - Cosmic Recipe Hub`,
-    description: recipe.metadata?.description || `Learn how to make ${recipe.title}`,
   }
 }
 
 export default async function RecipePage({ params }: RecipePageProps) {
   const { slug } = await params
-  const recipe = await getRecipe(slug)
+  
+  let recipe
+  try {
+    recipe = await getRecipe(slug)
+  } catch (error) {
+    console.error('Error fetching recipe:', error)
+    notFound()
+  }
 
   if (!recipe) {
     notFound()
   }
 
-  const difficultyColors = {
+  const difficultyColors: Record<DifficultyLevel, string> = {
     easy: 'bg-green-100 text-green-800',
     medium: 'bg-yellow-100 text-yellow-800',
     hard: 'bg-red-100 text-red-800',

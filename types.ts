@@ -8,6 +8,7 @@ interface CosmicObject {
   type: string;
   created_at: string;
   modified_at: string;
+  thumbnail?: string;
 }
 
 // Recipe interface
@@ -38,9 +39,15 @@ export interface Recipe extends CosmicObject {
 export interface Category extends CosmicObject {
   type: 'categories';
   metadata: {
-    name?: string;
+    name: string; // Made required since it's essential for display
     description?: string;
   };
+  thumbnail?: string;
+}
+
+// Category with recipe count for homepage and category pages
+export interface CategoryWithCount extends Category {
+  recipeCount: number;
 }
 
 // Author interface
@@ -87,8 +94,7 @@ export type RecipeCardProps = {
 };
 
 export type CategoryCardProps = {
-  category: Category;
-  recipeCount?: number;
+  category: CategoryWithCount;
   className?: string;
 };
 

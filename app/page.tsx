@@ -1,4 +1,4 @@
-import { getRecipes, getCategories } from '@/lib/cosmic'
+import { getRecipes, getCategoriesWithRecipeCount } from '@/lib/cosmic'
 import RecipeCard from '@/components/RecipeCard'
 import CategoryCard from '@/components/CategoryCard'
 import Hero from '@/components/Hero'
@@ -6,7 +6,7 @@ import Hero from '@/components/Hero'
 export default async function HomePage() {
   const [recipes, categories] = await Promise.all([
     getRecipes(),
-    getCategories()
+    getCategoriesWithRecipeCount()
   ])
 
   const featuredRecipes = recipes.slice(0, 6)

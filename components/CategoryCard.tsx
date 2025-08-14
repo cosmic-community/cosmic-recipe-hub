@@ -1,12 +1,13 @@
 import Link from 'next/link'
-import { Category } from '@/types'
+import { CategoryWithCount } from '@/types'
 
 interface CategoryCardProps {
-  category: Category & { recipeCount: number }
+  category: CategoryWithCount
 }
 
 export default function CategoryCard({ category }: CategoryCardProps): JSX.Element {
   const imageUrl = category.thumbnail || 'https://images.unsplash.com/photo-1556909114-2a98c5ad9ec9?w=800&h=600&fit=crop&auto=format,compress'
+  const categoryName = category.metadata?.name || category.title
   
   return (
     <Link href={`/categories/${category.slug}`}>
@@ -14,13 +15,13 @@ export default function CategoryCard({ category }: CategoryCardProps): JSX.Eleme
         <div className="relative h-48 overflow-hidden">
           <img
             src={imageUrl}
-            alt={category.metadata.name}
+            alt={categoryName}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           <div className="absolute bottom-4 left-4 right-4">
             <h3 className="text-xl font-bold text-white mb-1">
-              {category.metadata.name}
+              {categoryName}
             </h3>
             <div className="flex items-center gap-2">
               <span className="bg-white/20 text-white text-sm px-2 py-1 rounded-full backdrop-blur-sm">
@@ -31,7 +32,7 @@ export default function CategoryCard({ category }: CategoryCardProps): JSX.Eleme
         </div>
         
         <div className="p-6">
-          {category.metadata.description && (
+          {category.metadata?.description && (
             <p className="text-gray-600 line-clamp-3">
               {category.metadata.description}
             </p>

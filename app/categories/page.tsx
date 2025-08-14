@@ -1,22 +1,11 @@
 import { Metadata } from 'next'
 import { getCategoriesWithRecipeCount } from '@/lib/cosmic'
+import { CategoryWithCount } from '@/types'
 import CategoryCard from '@/components/CategoryCard'
 
 export const metadata: Metadata = {
   title: 'Recipe Categories - Cosmic Recipe Hub',
   description: 'Browse all recipe categories and discover new cooking inspirations.',
-}
-
-interface CategoryWithCount {
-  id: string
-  slug: string
-  title: string
-  metadata: {
-    name: string
-    description?: string
-  }
-  recipeCount: number
-  thumbnail?: string
 }
 
 export default async function CategoriesPage(): Promise<JSX.Element> {
