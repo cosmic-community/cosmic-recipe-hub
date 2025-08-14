@@ -8,6 +8,7 @@ if (!process.env.COSMIC_BUCKET_SLUG || !process.env.COSMIC_READ_KEY) {
 const cosmic = createBucketClient({
   bucketSlug: process.env.COSMIC_BUCKET_SLUG,
   readKey: process.env.COSMIC_READ_KEY,
+  apiEnvironment: "staging"
 })
 
 export async function getRecipes(): Promise<Recipe[]> {
