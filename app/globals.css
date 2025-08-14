@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  }
+}
+
+@layer components {
+  .prose-recipe {
+    @apply prose prose-gray max-w-none;
+  }
+  
+  .prose-recipe ul {
+    @apply list-disc list-inside space-y-1 mb-4;
+  }
+  
+  .prose-recipe ol {
+    @apply list-decimal list-inside space-y-2 mb-4;
+  }
+  
+  .prose-recipe li {
+    @apply text-gray-700 leading-relaxed;
+  }
+}
+
+@layer utilities {
+  .aspect-recipe {
+    aspect-ratio: 16 / 10;
+  }
+  
+  .aspect-author {
+    aspect-ratio: 1 / 1;
+  }
+}
