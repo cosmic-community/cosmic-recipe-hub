@@ -13,7 +13,7 @@ module.exports = {
         primary: '#2563eb',
         'primary-hover': '#1d4ed8',
         secondary: '#64748b',
-        accent: '#f59e0b',
+        accent: '#3b82f6',
       },
     },
   },
