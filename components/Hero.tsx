@@ -16,7 +16,7 @@ export default function Hero() {
       <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
           Discover Amazing
-          <span className="block text-blue-400">Recipes</span>
+          <span className="block text-primary">Recipes</span>
         </h1>
         <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-2xl mx-auto leading-relaxed">
           From comfort classics to gourmet creations, find your next favorite dish from our community of passionate chefs
@@ -24,13 +24,13 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="/recipes"
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-primary hover:bg-primary-hover rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
           >
             Browse Recipes
           </a>
           <a
             href="/categories"
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-blue-600 bg-white hover:bg-gray-50 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary bg-white hover:bg-gray-50 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
           >
             View Categories
           </a>
